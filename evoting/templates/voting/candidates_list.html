@@ -1,0 +1,35 @@
+<!-- templates/voting/voter_list.html -->
+{% extends 'voting/base.html' %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold">Candidates List</h2>
+        <a href="{% url 'candi_create' %}" class="bg-blue-500 text-white px-4 py-2 rounded">Add New Candidate</a>
+    </div>
+
+    <table class="min-w-full">
+        <thead>
+            <tr>
+                <th class="text-left">ID</th>
+                <th class="text-left">Name</th>
+                <th class="text-left">Party</th>
+                <th class="text-left">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candi in candidates %}
+            <tr>
+                <td class="py-2">{{ candi.candidate_id }}</td>
+                <td>{{ candi.name }}</td>
+                <td>{{ candi.party }}</td>
+                <td>
+                    <a href="{% url 'candi_update' candi.candidate_id %}" class="text-blue-500">Edit</a>
+                    <a href="{% url 'candi_delete' candi.candidate_id %}" class="text-red-500 ml-2" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

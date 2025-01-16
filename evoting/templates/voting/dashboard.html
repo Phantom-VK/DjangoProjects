@@ -1,0 +1,31 @@
+<!-- templates/voting/dashboard.html -->
+{% extends 'voting/base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-4">Statistics</h2>
+        <p>Total Voters: {{ total_voters }}</p>
+        <p>Total Candidates: {{ total_candidates }}</p>
+        <p>Total Votes Cast: {{ total_votes }}</p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-4">Recent Votes</h2>
+        <ul>
+            {% for vote in recent_votes %}
+            <li class="mb-2">{{ vote.voter.name }} voted for {{ vote.candidate.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-4">Current Results</h2>
+        <ul>
+            {% for result in results %}
+            <li class="mb-2">{{ result.candidate.name }}: {{ result.total_votes }} votes</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

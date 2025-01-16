@@ -1,0 +1,24 @@
+<!-- templates/voting/voter_form.html -->
+{% extends 'voting/base.html' %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow max-w-md mx-auto">
+    <h2 class="text-xl font-bold mb-6">{% if candidate %}Edit{% else %}Add{% endif %} Candidate</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Name</label>
+            <input type="text" name="name" value="{{ candidate.name|default:'' }}" class="w-full border rounded px-3 py-2" required>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-gray-700 mb-2">Party</label>
+            <input type="text" name="party" value="{{ candidate.party|default:'' }}" class="w-full border rounded px-3 py-2" required>
+        </div>
+
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+        <a href="{% url 'candi_list' %}" class="ml-2 text-gray-500">Cancel</a>
+    </form>
+</div>
+{% endblock %}
