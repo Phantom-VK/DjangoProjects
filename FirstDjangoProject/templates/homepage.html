@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #4caf50, #81c784);
+            color: #fff;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Navigation */
+        nav {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .nav-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #4caf50;
+            background-color: #fff;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .nav-button:hover {
+            background-color: #c8e6c9;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #388e3c;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Our Website</h1>
+        <p>Empowering teams to collaborate and grow together</p>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav>
+        <a href="{% url 'teamRegister' %}" class="nav-button">Register Team</a>
+        <a href="{% url 'about' %}" class="nav-button">About Us</a>
+        <a href="{% url 'contact' %}" class="nav-button">Contact Us</a>
+    </nav>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2025 Your Website Name. All rights reserved.
+    </footer>
+</body>
+</html>
