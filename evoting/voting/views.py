@@ -73,7 +73,7 @@ def candidate_update(request, pk):
         candidate.save()
         messages.success(request, 'Candidate updated successfully!')
         return redirect('candi_list')
-    return render(request, 'voting/candidates_form.html', {'voter': candidate})
+    return render(request, 'voting/candidates_form.html', {'candidate': candidate})
 
 
 def candidate_delete(request, pk):
@@ -81,3 +81,110 @@ def candidate_delete(request, pk):
     candidate.delete()
     messages.success(request, 'Candidate deleted successfully!')
     return redirect('candi_list')
+
+
+# Campaign CRUD Operations
+def campaign_list(request):
+    campaigns = Campaign.objects.select_related('candidate')
+    return render(request, 'voting/campaign_list.html', {'campaigns': campaigns})
+
+
+def campaign_create(request):
+    candidates = Candidate.objects.all()
+    if request.method == 'POST':
+        candidate_id = request.POST.get('candidate')
+        details = request.POST.get('details')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+
+        candidate = get_object_or_404(Candidate, pk=candidate_id)
+        Campaign.objects.create(
+            candidate=candidate,
+            details=details,
+            start_date=start_date,
+            end_date=end_date
+        )
+        messages.success(request, 'Campaign created successfully!')
+        return redirect('campaign_list')
+    return render(request, 'voting/campaign_form.html', {'candidates': candidates})
+
+
+def campaign_update(request, pk):
+    campaign = get_object_or_404(Campaign, pk=pk)
+    candidates = Candidate.objects.all()
+
+    if request.method == 'POST':
+        campaign.candidate_id = request.POST.get('candidate')
+        campaign.details = request.POST.get('details')
+        campaign.start_date = request.POST.get('start_date')
+        campaign.end_date = request.POST.get('end_date')
+        campaign.save()
+        messages.success(request, 'Campaign updated successfully!')
+        return redirect('campaign_list')
+
+    return render(request, 'voting/campaign_form.html', {
+        'campaign': campaign,
+        'candidates': candidates
+    })
+
+
+def campaign_delete(request, pk):
+    campaign = get_object_or_404(Campaign, pk=pk)
+    campaign.delete()
+    messages.success(request, 'Campaign deleted successfully!')
+    return redirect('campaign_list')
+
+
+# Result Management
+def result_list(request):
+    # Calculate results based on vote counts
+    results = Candidate.objects.annotate(
+        total_votes=Count('vote')
+    ).order_by('-total_votes')
+
+    total_votes = sum(result.total_votes for result in results)
+
+    # Calculate percentages
+    for result in results:
+        result.vote_percentage = (result.total_votes / total_votes * 100) if total_votes > 0 else 0
+
+    return render(request, 'voting/result_list.html', {
+        'results': results,
+        'total_votes': total_votes
+    })
+
+
+# Voting Process
+def cast_vote(request):
+    if request.method == 'POST':
+        voter_id = request.POST.get('voter')
+        candidate_id = request.POST.get('candidate')
+
+        try:
+            # Validate that voter hasn't already voted
+            existing_vote = Vote.objects.filter(voter_id=voter_id).exists()
+            if existing_vote:
+                messages.error(request, 'You have already cast your vote!')
+                return redirect('cast_vote')
+
+            # Create new vote
+            Vote.objects.create(
+                voter_id=voter_id,
+                candidate_id=candidate_id
+            )
+            messages.success(request, 'Vote cast successfully!')
+            return redirect('result_list')
+
+        except Exception as e:
+            messages.error(request, f'Error casting vote: {str(e)}')
+
+    # Prepare data for vote casting form
+    voters = Voter.objects.filter(
+        vote__isnull=True  # Only show voters who haven't voted
+    )
+    candidates = Candidate.objects.all()
+
+    return render(request, 'voting/cast_vote.html', {
+        'voters': voters,
+        'candidates': candidates
+    })

@@ -7,8 +7,6 @@ class Voter(models.Model):
     voter_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     age = models.IntegerField(validators=[MinValueValidator(18)])
-
-
     def __str__(self):
         return f"{self.name} (ID: {self.voter_id})"
 
