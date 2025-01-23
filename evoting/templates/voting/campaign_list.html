@@ -1,0 +1,30 @@
+{% extends 'voting/base.html' %}
+
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow">
+    <h2 class="text-xl font-bold mb-6">Campaign List</h2>
+    
+    <table class="min-w-full">
+        <thead>
+            <tr>
+                <th class="text-left">Candidate</th>
+                <th class="text-left">Details</th>
+                <th class="text-left">Start Date</th>
+              <th class="text-left">End Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for campaign in campaigns %}
+            <tr>
+                <td>{{ campaign.candidate.name }}</td>
+                <td>{{ campaign.details }}</td>
+                <td>{{ campaign.start_date }}</td>
+                <td>{{ campaign.end_date }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
