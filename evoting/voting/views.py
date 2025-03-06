@@ -23,6 +23,15 @@ def voter_list(request):
     return render(request, 'voting/voter_list.html', {'voters': voters})
 
 
+
+# CRUD operations for Voter
+def view_sggs(request):
+    return render(request, 'sggs.html')
+
+def view_hostel(request):
+    return render(request, 'hostel.html')
+
+
 def voter_create(request):
     if request.method == 'POST':
         name = request.POST.get('name')

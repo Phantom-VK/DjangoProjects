@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Django_Basic_20_09_2021-main" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/.idea/inspectionProfiles" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/TY_IT_8Sept" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/library" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/media" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/static" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/student" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/New__Django__Version__CODE__TY_IT_8Sept/templates" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/.idea/inspectionProfiles" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/TY_IT_8Sept" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/library" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/media" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/static" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/student" />
+      <excludeFolder url="file://$MODULE_DIR$/Template_BasicS-master/TY_IT_8Sept_ZIP/TY_IT_8Sept/templates" />
+    </content>
     <orderEntry type="jdk" jdkName="Python 3.12 (OS)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

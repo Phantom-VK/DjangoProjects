@@ -6,6 +6,8 @@ from . import views
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
     # Voter URLS
+    path('sggs/', views.view_sggs,name='link_sggs'),
+    path('hostel/', views.view_hostel,name='link_hostel'),
     path('voters/', views.voter_list, name='voter_list'),
     path('voters/create/', views.voter_create, name='voter_create'),
     path('voters/<int:pk>/update/', views.voter_update, name='voter_update'),
