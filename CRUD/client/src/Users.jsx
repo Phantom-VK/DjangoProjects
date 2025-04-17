@@ -35,7 +35,9 @@ function Users() {
 
     const filteredUsers = users.filter(user => 
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+        user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        user.phone.includes(searchTerm) ||
+        user.role.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -84,43 +86,58 @@ function Users() {
                         ) : (
                             <div className="table-responsive">
                                 <table className="table table-dark table-hover mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th className="ps-4">
-                                                <i className="fas fa-user me-2 text-viper-green"></i>Name
-                                            </th>
-                                            <th>
-                                                <i className="fas fa-envelope me-2 text-viper-green"></i>Email
-                                            </th>
-                                            <th>
-                                                <i className="fas fa-birthday-cake me-2 text-viper-green"></i>Age
-                                            </th>
-                                            <th className="text-end pe-4">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {filteredUsers.map((user) => (
-                                            <tr key={user._id} className="align-middle">
-                                                <td className="ps-4 fw-bold">{user.name}</td>
-                                                <td>{user.email}</td>
-                                                <td>{user.age}</td>
-                                                <td className="text-end pe-4">
-                                                    <Link 
-                                                        to={`/update/${user._id}`} 
-                                                        className="btn btn-sm btn-viper-outline me-2"
-                                                    >
-                                                        <i className="fas fa-edit me-1"></i>Edit
-                                                    </Link>
-                                                    <button 
-                                                        onClick={() => handleDelete(user._id)} 
-                                                        className="btn btn-sm btn-danger"
-                                                    >
-                                                        <i className="fas fa-trash-alt me-1"></i>Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
+                                <thead>
+    <tr>
+        <th className="ps-4">
+            <i className="fas fa-user me-2 text-viper-green"></i>Name
+        </th>
+        <th>
+            <i className="fas fa-envelope me-2 text-viper-green"></i>Email
+        </th>
+        <th>
+            <i className="fas fa-birthday-cake me-2 text-viper-green"></i>Age
+        </th>
+        <th>
+            <i className="fas fa-phone me-2 text-viper-green"></i>Phone
+        </th>
+        <th>
+            <i className="fas fa-user-tag me-2 text-viper-green"></i>Role
+        </th>
+        <th className="text-end pe-4">Actions</th>
+    </tr>
+</thead>
+<tbody>
+    {filteredUsers.map((user) => (
+        <tr key={user._id} className="align-middle">
+            <td className="ps-4 fw-bold">{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.age}</td>
+            <td>{user.phone}</td>
+            <td>
+                <span className={`badge bg-${
+                    user.role === 'admin' ? 'danger' : 
+                    user.role === 'editor' ? 'warning' : 'info'
+                }`}>
+                    {user.role}
+                </span>
+            </td>
+            <td className="text-end pe-4">
+                <Link 
+                    to={`/update/${user._id}`} 
+                    className="btn btn-sm btn-viper-outline me-2"
+                >
+                    <i className="fas fa-edit me-1"></i>Edit
+                </Link>
+                <button 
+                    onClick={() => handleDelete(user._id)} 
+                    className="btn btn-sm btn-danger"
+                >
+                    <i className="fas fa-trash-alt me-1"></i>Delete
+                </button>
+            </td>
+        </tr>
+    ))}
+</tbody>
                                 </table>
                             </div>
                         )}

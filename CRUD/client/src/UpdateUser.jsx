@@ -8,7 +8,10 @@ function UpdateUser() {
     const [inputs, setInputs] = useState({
         name: '',
         email: '',
-        age: ''
+        age: '',
+        phone: '',
+        address: '',
+        role: 'user'
     });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -145,6 +148,67 @@ function UpdateUser() {
                                             />
                                         </div>
                                     </div>
+                                    <div className="mb-4">
+    <label className="form-label text-viper-green">
+        <i className="fas fa-phone me-2"></i>Phone
+    </label>
+    <div className="input-group">
+        <span className="input-group-text bg-dark-700 border-tech-blue">
+            <i className="fas fa-mobile-alt text-tech-blue"></i>
+        </span>
+        <input
+            type="tel"
+            name="phone"
+            className="form-control-light"
+            value={inputs.phone}
+            onChange={handleChange}
+            required
+            placeholder="Enter phone number"
+        />
+    </div>
+</div>
+
+<div className="mb-4">
+    <label className="form-label text-viper-green">
+        <i className="fas fa-map-marker-alt me-2"></i>Address
+    </label>
+    <div className="input-group">
+        <span className="input-group-text bg-dark-700 border-tech-blue">
+            <i className="fas fa-home text-tech-blue"></i>
+        </span>
+        <input
+            type="text"
+            name="address"
+            className="form-control-light"
+            value={inputs.address}
+            onChange={handleChange}
+            required
+            placeholder="Enter address"
+        />
+    </div>
+</div>
+
+<div className="mb-5">
+    <label className="form-label text-viper-green">
+        <i className="fas fa-user-tag me-2"></i>Role
+    </label>
+    <div className="input-group">
+        <span className="input-group-text bg-dark-700 border-tech-blue">
+            <i className="fas fa-users-cog text-tech-blue"></i>
+        </span>
+        <select
+            name="role"
+            className="form-control-light"
+            value={inputs.role}
+            onChange={handleChange}
+            required
+        >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            <option value="editor">Editor</option>
+        </select>
+    </div>
+</div>
 
                                     <div className="d-flex justify-content-between">
                                         <Link
