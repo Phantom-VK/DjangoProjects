@@ -3,80 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Team Registrations</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* General Styles */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #388e3c;
+            --primary-light: #c8e6c9;
+            --secondary-color: #2196F3;
+            --text-color: #333;
+            --light-text: #fff;
+            --background: #f5f5f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #4caf50, #81c784);
-            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
         }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
         header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--light-text);
             text-align: center;
-            padding: 50px 20px;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
         }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff22" d="M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,112C672,107,768,149,864,160C960,171,1056,149,1152,149.3C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+            opacity: 0.3;
+        }
+
         header h1 {
-            margin: 0;
             font-size: 3rem;
+            margin-bottom: 15px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
+
         header p {
             font-size: 1.2rem;
-            margin-top: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
         }
 
         /* Navigation */
         nav {
-            margin-top: 20px;
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 20px;
+        }
+
         .nav-button {
             display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            font-size: 1rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            color: #4caf50;
-            background-color: #fff;
-            border: none;
-            border-radius: 25px;
+            padding: 10px 25px;
+            color: var(--primary-color);
+            font-weight: 600;
             text-decoration: none;
+            border-radius: 25px;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
+
         .nav-button:hover {
-            background-color: #c8e6c9;
-            transform: scale(1.1);
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 40px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
         }
 
         /* Footer */
         footer {
+            background-color: var(--primary-dark);
+            color: var(--light-text);
             text-align: center;
             padding: 20px;
-            background-color: #388e3c;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-card {
+                width: 100%;
+                max-width: 400px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to Our Website</h1>
-        <p>Empowering teams to collaborate and grow together</p>
-    </header>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>Team Registration Portal</h1>
+            <p>Register your team for the competition and showcase your skills</p>
+        </header>
 
-    <!-- Navigation Section -->
-    <nav>
-        <a href="{% url 'teamRegister' %}" class="nav-button">Register Team</a>
-        <a href="{% url 'about' %}" class="nav-button">About Us</a>
-        <a href="{% url 'contact' %}" class="nav-button">Contact Us</a>
-    </nav>
+        <!-- Navigation Section -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}" class="nav-button"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{% url 'teamRegister' %}" class="nav-button"><i class="fas fa-users"></i> Register Team</a></li>
+                <li><a href="{% url 'about' %}" class="nav-button"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="{% url 'contact' %}" class="nav-button"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
 
-    <!-- Footer Section -->
-    <footer>
-        &copy; 2025 Your Website Name. All rights reserved.
-    </footer>
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2>Join the Competition</h2>
+            <p>Register your team today and participate in our exciting competition!</p>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Win Prizes</h3>
+                    <p>Amazing prizes are waiting for the winners of our competition.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Team Building</h3>
+                    <p>Build strong connections and enhance your teamwork skills.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Showcase your innovative ideas and creative solutions.</p>
+                </div>
+            </div>
+
+            <a href="{% url 'teamRegister' %}" class="cta-button">Register Now</a>
+        </div>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2025 Team Registration Portal. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>

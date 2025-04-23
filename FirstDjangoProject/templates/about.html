@@ -4,60 +4,287 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #388e3c;
+            --primary-light: #c8e6c9;
+            --secondary-color: #2196F3;
+            --text-color: #333;
+            --light-text: #fff;
+            --background: #f5f5f5;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
         }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
         header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--light-text);
             text-align: center;
+            padding: 60px 20px;
+            position: relative;
         }
-        main {
-            padding: 20px;
+
+        header h1 {
+            font-size: 2.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 10px 25px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            border-color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
             max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--light-text);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        footer {
+
+        .main-content h2 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+        }
+
+        .main-content h3 {
+            color: var(--primary-color);
+            margin: 25px 0 15px;
+            font-size: 1.5rem;
+        }
+
+        .main-content p {
+            margin-bottom: 20px;
+        }
+
+        .about-section {
+            margin-bottom: 30px;
+        }
+
+        .team-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .team-member {
             text-align: center;
-            padding: 10px 0;
-            background-color: #4CAF50;
-            color: white;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            width: 200px;
+            padding: 20px 15px;
+            background-color: var(--background);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+        }
+
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        .contact-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--light-text);
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .team-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .team-member {
+                width: 80%;
+                max-width: 250px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>About Us</h1>
-    </header>
-    <main>
-        <h2>Welcome to Our Website!</h2>
-        <p>
-            We are dedicated to providing high-quality content and services. Our team consists of passionate individuals
-            who strive to deliver the best experience for our users.
-        </p>
-        <h3>Our Mission</h3>
-        <p>
-            Our mission is to empower individuals through knowledge and create a platform where everyone can learn, grow,
-            and succeed.
-        </p>
-        <h3>Contact Us</h3>
-        <p>
-            If you have any questions or feedback, feel free to <a href="/contact/">contact us</a>. We'd love to hear from you!
-        </p>
-    </main>
-    <footer>
-        &copy; 2025 Your Website Name. All rights reserved.
-    </footer>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1>About Us</h1>
+        </header>
+
+        <!-- Navigation Section -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}" class="nav-button"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="{% url 'teamRegister' %}" class="nav-button"><i class="fas fa-users"></i> Register Team</a></li>
+                <li><a href="{% url 'about' %}" class="nav-button"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="{% url 'contact' %}" class="nav-button"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="about-section">
+                <h2>Welcome to Our Team Registration Portal</h2>
+                <p>
+                    We are dedicated to providing a seamless platform for teams to register for various competitions and events.
+                    Our goal is to empower individuals through collaboration and create opportunities for everyone to showcase their skills and talents.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h3>Our Mission</h3>
+                <p>
+                    Our mission is to foster innovation, teamwork, and growth by creating a platform where teams can come together,
+                    register for competitions, and showcase their unique abilities. We believe in the power of collaboration and
+                    aim to provide a user-friendly registration process for all participants.
+                </p>
+            </div>
+
+            <div class="about-section">
+                <h3>Our Team</h3>
+                <div class="team-section">
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p class="member-name">John Doe</p>
+                        <p class="member-role">Founder & Developer</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p class="member-name">Jane Smith</p>
+                        <p class="member-role">Designer</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <p class="member-name">Mike Johnson</p>
+                        <p class="member-role">Event Coordinator</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section">
+                <h3>Contact Us</h3>
+                <p>
+                    If you have any questions, feedback, or require assistance, we'd be happy to hear from you!
+                </p>
+                <a href="{% url 'contact' %}" class="contact-link">
+                    <i class="fas fa-envelope"></i> Get in touch with our team
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2025 Team Registration Portal. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>
