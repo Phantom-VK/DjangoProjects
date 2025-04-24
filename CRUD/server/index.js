@@ -16,11 +16,8 @@ mongoose.connect('mongodb+srv://2022bit052:OOad5MumuWkJfh02@cluster0.noxkp4q.mon
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+
 
 // Basic route
 app.get('/', (req, res) => {
